@@ -46,12 +46,21 @@ class User:
         return connectToMySQL('').query_db( query, data )
 
     @staticmethod
-    def validate_user( user ):
+    def validate_user_register( user ):
         is_valid = True
         EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$') 
         # test whether a field matches the pattern
         if not EMAIL_REGEX.match(user['email']): 
-            flash("Invalid email address!")
+            flash("Invalid email address!", 'register_error')
             is_valid = False
         return is_valid
 
+    @staticmethod
+    def parse_user_register(data):
+        parsed_data = {
+            'first_name': data['first_name'],
+            'last_name': data['last_name'],
+            'email': data['email'],
+            'password': data['password']
+        }
+        return parsed_data

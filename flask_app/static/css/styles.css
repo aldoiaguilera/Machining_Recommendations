@@ -2,3 +2,70 @@
     margin: 0;
     padding: 0;
 }
+
+body {
+    background-color:beige;
+}
+
+.title-container {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    border-bottom: 2px solid red;
+    background-color: black;
+    color: white;
+}
+
+.body-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.form-container {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    border: 2px solid black;
+    padding: 20px;
+    background-color:rgb(194, 167, 78);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+form * {
+    margin: 5px;
+}
+
+.register-button, .login-button {
+    border-radius: 10px;
+    width: 100px;
+    height: 40px;
+    padding: 10px;
+    background-color: rgb(71, 67, 67);
+    color: white;
+}
+
+.form-title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.alert {
+    color: red;
+}

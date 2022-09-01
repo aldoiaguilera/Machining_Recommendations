@@ -10,3 +10,18 @@ from flask_app.models.user import User
 def index():
     return render_template('index.html')
 
+@app.route('/register', methods=['POST'])
+def register():
+    data = User.parse_user_register(request.form)
+    if not User.validate_user_register(data):
+        return redirect('/')
+    return redirect('/dashboard')
+
+@app.route('/login', methods=['POST'])
+def login():
+    pass
+    return redirect('/dashboard')
+
+@app.route('/dashboard')
+def dashboard():
+    return render_template('dashboard.html')
