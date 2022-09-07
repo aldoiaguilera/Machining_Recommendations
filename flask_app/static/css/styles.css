@@ -3,12 +3,17 @@
     padding: 0;
 }
 
+h1 {
+    font-size: 40px;
+}
+
 body {
     background-color:beige;
 }
 
 .title-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     text-align: center;
     padding: 20px;
@@ -32,6 +37,7 @@ body {
     border: 2px solid black;
     padding: 20px;
     background-color:rgb(194, 167, 78);
+    border-radius: 10px;
 }
 
 form {
@@ -45,12 +51,21 @@ form * {
     margin: 5px;
 }
 
-.register-button, .login-button {
+.register-button, .login-button, .logout-button {
     border-radius: 10px;
     width: 100px;
     height: 40px;
     padding: 10px;
     background-color: rgb(71, 67, 67);
+    color: white;
+}
+
+.add-button, .find-button {
+    border-radius: 10px;
+    width: 100px;
+    height: 40px;
+    padding: 10px;
+    background-color: green;
     color: white;
 }
 
@@ -68,4 +83,23 @@ form * {
 
 .alert {
     color: red;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.find-container, .add-container {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin: 40px;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 20px;
+    background-color: orange;
 }

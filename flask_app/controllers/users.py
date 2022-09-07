@@ -1,6 +1,6 @@
 from flask_app import app
 from flask import render_template, redirect, request, session, flash
-from flask_bcrypt import Bcrypt        
+from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
 
 # Import classes
@@ -12,16 +12,32 @@ def index():
 
 @app.route('/register', methods=['POST'])
 def register():
+    if request.form['confirm_password'] != request.form['password']:
+        flash("Passwords do not match!", 'register_error')
+        return redirect('/')
     data = User.parse_user_register(request.form)
     if not User.validate_user_register(data):
         return redirect('/')
+    data['password'] = bcrypt.generate_password_hash(data['password'])
+    session['user_id'] = User.save_user(data)
+    session['first_name'] = data['first_name']
     return redirect('/dashboard')
 
 @app.route('/login', methods=['POST'])
 def login():
-    pass
+    data = User.parse_user_login(request.form)
+    user = User.get_user_by_email(data)
+    if not user:
+        flash('Invalid email address', 'login_error')
+        return redirect('/')
+    if not bcrypt.check_password_hash(user.password, data['password']):
+        flash('Invalid password', 'login_error')
+        return redirect('/')
+    session['user_id'] = user.id
+    session['first_name'] = user.first_name
     return redirect('/dashboard')
 
-@app.route('/dashboard')
-def dashboard():
-    return render_template('dashboard.html')
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect('/')
