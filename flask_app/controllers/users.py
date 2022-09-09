@@ -20,7 +20,7 @@ def register():
         return redirect('/')
     data['password'] = bcrypt.generate_password_hash(data['password'])
     session['user_id'] = User.save_user(data)
-    session['first_name'] = data['first_name']
+    session['username'] = data['username']
     return redirect('/dashboard')
 
 @app.route('/login', methods=['POST'])
@@ -34,7 +34,7 @@ def login():
         flash('Invalid password', 'login_error')
         return redirect('/')
     session['user_id'] = user.id
-    session['first_name'] = user.first_name
+    session['username'] = user.username
     return redirect('/dashboard')
 
 @app.route('/logout')

@@ -36,7 +36,7 @@ body {
     align-items: flex-start;
     border: 2px solid black;
     padding: 20px;
-    background-color:rgb(194, 167, 78);
+    background-color:orange;
     border-radius: 10px;
 }
 
@@ -51,7 +51,7 @@ form * {
     margin: 5px;
 }
 
-.register-button, .login-button, .logout-button {
+.logout-button, .home-button {
     border-radius: 10px;
     width: 100px;
     height: 40px;
@@ -60,7 +60,7 @@ form * {
     color: white;
 }
 
-.add-button, .find-button {
+.add-button, .find-button, .register-button, .login-button {
     border-radius: 10px;
     width: 100px;
     height: 40px;
@@ -102,4 +102,9 @@ form * {
     border-radius: 10px;
     font-size: 20px;
     background-color: orange;
+}
+
+.welcome {
+    font-size: 30px;
+    color: yellow;
 }
