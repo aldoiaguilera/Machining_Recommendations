@@ -9,6 +9,7 @@ class Material:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.insrt_id = data['insrt_id']
+        self.information = []
 
     @classmethod
     def get_all_materials_by_insert_json(cls, data):
@@ -40,10 +41,17 @@ class Material:
         query = """
         SELECT * 
         FROM materials
-        WHERE id = %(id)s
+        JOIN insrts
+        ON insrts.id = materials.insrt_id
+        JOIN manufacturers
+        ON manufacturers.id = insrts.manufacturer_id
+        WHERE materials.id = %(id)s;
         ;"""
         result = connectToMySQL(cls.DB).query_db(query, data)
-        return cls(result[0])
+        material = cls(result[0])
+        material.information.append(result[0]['manufacturer'])
+        material.information.append(result[0]['insrt'])
+        return material
 
     @classmethod
     def save_material(cls, data):

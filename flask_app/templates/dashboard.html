@@ -19,7 +19,7 @@
     </div>
     <div class="body-container">
         <div class="find-container">
-            <form action="/find/" >
+            <form>
                 <label for="manufacturer">Select Manufacturer:
                     <select name="manufacturer" onchange="get_all_inserts(this.value)" id="manufacturer">
                         {% for manufacturer in manufacturers %}
@@ -35,7 +35,7 @@
                     <select name="material" id="material">
                     </select>
                 </label>
-                <button class="find-button">Find</button>
+                <button class="find-button" onclick="find()" type="button">Find</button>
             </form>
         </div>
         <div class="add-container">
@@ -61,7 +61,7 @@
             </form>
         </div>
     </div>
-    <script src="{{ url_for('static', filename='scripts/scripts.js')}}">
+    <script src="{{ url_for('static', filename='scripts/dashboard_scripts.js')}}">
     </script>
 </body>
 </html>

@@ -28,3 +28,9 @@ async function get_all_materials(insrt_id){
         `;
     }
 }
+
+// Load page result
+function find() {
+    material = document.getElementById("material").value;
+    window.location.href = "http://localhost:5000/find/" + material;
+}

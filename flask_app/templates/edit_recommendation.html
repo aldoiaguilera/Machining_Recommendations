@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machining Recommendations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}">
+</head>
+<body>
+    <div class="title-container">
+        <h1>Machining Recommendations</h1>
+        <div>
+            <p class="welcome">Welcome {{session['username']}}</p>
+        </div>
+        <div class="nav-container">
+            <a href="/dashboard"><button class="home-button">Home</button></a>
+            <a href="/logout"><button class="logout-button">Logout</button></a>
+        </div>
+    </div>
+    <div class="recommendation-body-container">
+        <div class="tool-information">
+            <p><strong>Manufactuer:</strong> {{recommendation.other.manufacturer}}</p>
+            <p><strong>Insert:</strong> {{recommendation.other.insrt}}</p>
+            <p><strong>Material:</strong> {{recommendation.other.material}}</p>
+        </div>
+        <div class="recommendation-form-container">
+            <form id="recommendation-form" action="/update_recommendation" method="post" style="display: flex">
+                {% with messages = get_flashed_messages(category_filter=["recommendation_error"]) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="alert">**{{message}}**</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <input type="hidden" name="id" value="{{recommendation.id}}">
+                <input type="hidden" name="material_id" value="{{recommendation.other.material_id}}">
+                <input type="hidden" name="user_id" value="{{session['user_id']}}">
+                <label for="velocity">Velocity (SFM):
+                    <input type="number" name="velocity" min="0" max="2000" value="{{recommendation.velocity}}">
+                </label>
+                <label for="feed">Feed (IPR):
+                    <input type="number" name="feed" min="0.001" max="0.030" step="0.001" value="{{recommendation.feed}}">
+                </label>
+                <label for="depth_of_cut">Depth of Cut (inch):
+                    <input type="number" name="depth_of_cut" min="0.01" max="0.300" step="0.01" value="{{recommendation.depth_of_cut}}">
+                </label>
+                <div class="button-container">
+                    <button id="submit-button">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

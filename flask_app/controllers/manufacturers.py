@@ -1,4 +1,3 @@
-from wsgiref import validate
 from flask_app import app
 from flask import render_template, redirect, request, session, flash, jsonify
 
@@ -33,9 +32,3 @@ def add_new_category():
     Material.save_material(data)
 
     return redirect('/dashboard')
-
-@app.route('/find/<material_id>')
-def find(material_id):
-    data = { 'id' : material_id }
-    material = Material.get_material_by_id(data)
-    return render_template('find.html', material=material)

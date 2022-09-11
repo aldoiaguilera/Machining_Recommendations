@@ -18,8 +18,56 @@
             <a href="/logout"><button class="logout-button">Logout</button></a>
         </div>
     </div>
-    <div class="body-container">
-        {{material.material}}
+    <div class="recommendation-body-container">
+        <div class="tool-information">
+            <p><strong>Manufactuer:</strong> {{material.information[0]}}</p>
+            <p><strong>Insert:</strong> {{material.information[1]}}</p>
+            <p><strong>Material:</strong> {{material.material}}</p>
+        </div>
+        <button id="add-recommendation" onclick="show_form()">Add Recommendation</button>
+        <div class="recommendation-form-container">
+            <form id="recommendation-form" action="/add_recommendation" method="post">
+                {% with messages = get_flashed_messages(category_filter=["recommendation_error"]) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="alert">**{{message}}**</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <input type="hidden" name="material_id" value="{{material.id}}">
+                <input type="hidden" name="user_id" value="{{session['user_id']}}">
+                <label for="velocity">Velocity (SFM):
+                    <input type="number" name="velocity" min="0" max="2000">
+                </label>
+                <label for="feed">Feed (IPR):
+                    <input type="number" name="feed" min="0.001" max="0.030" step="0.001">
+                </label>
+                <label for="depth_of_cut">Depth of Cut (inch):
+                    <input type="number" name="depth_of_cut" min="0.01" max="0.300" step="0.01">
+                </label>
+                <div class="button-container">
+                    <button onclick="cancel_recommendation()" id="cancel-button" type="button">Cancel</button>
+                    <button id="submit-button">Submit</button>
+                </div>
+            </form>
+        </div>
+        <div class="recommendations-container">
+            {% for recommendation in recommendations %}
+            <div class="recommendation">
+                <p><strong>Username:</strong> {{recommendation.other.username}}</p>
+                <p><strong>Velocity:</strong> {{recommendation.velocity}} sfm</p>
+                <p><strong>Feedrate:</strong> {{recommendation.feed}} in/rev</p>
+                <p><strong>Depth of Cut:</strong> {{recommendation.depth_of_cut}} inch</p>
+                {% if recommendation.user_id == session['user_id'] %}
+                <div>
+                    <a href="/edit/{{recommendation.id}}"><button class="edit-button">Edit</button></a>
+                    <a href="/delete/{{recommendation.id}}"><button class="delete-button">Delete</button></a>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
     </div>
+    <script src="{{ url_for('static', filename='scripts/find_scripts.js') }}"></script>
 </body>
 </html>
