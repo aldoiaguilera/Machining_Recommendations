@@ -2,7 +2,6 @@
 async function get_all_inserts(manufacturer_id) {
     var results = await fetch('http://localhost:5000/get_inserts/' + manufacturer_id)
         .then( response => response.json() )
-    console.log(results);
     position = document.getElementById("insrt");
     position.innerHTML = '';
     for (var i = 0; i < results.length; i++) {
@@ -13,7 +12,7 @@ async function get_all_inserts(manufacturer_id) {
     get_all_materials(results[0].id)
 }
 
-// Load default values into find form
+// Load default values into find form when page is loaded
 get_all_inserts(document.getElementById("manufacturer").value)
 
 // Load materials based on insert

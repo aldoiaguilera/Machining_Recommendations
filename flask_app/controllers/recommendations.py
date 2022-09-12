@@ -4,6 +4,8 @@ from flask import render_template, redirect, request, session, flash
 # Import classes
 from flask_app.models.recommendation import Recommendation
 
+# Validate recommendation form data and save if accepted
+# Returns user to tool page if successful
 @app.route('/add_recommendation', methods=['POST'])
 def add_recommendation():
     if request.form['velocity'] == '' or request.form['feed'] == '' or request.form['depth_of_cut'] == '':
@@ -15,6 +17,8 @@ def add_recommendation():
     Recommendation.save_recommendation(recommendation)
     return redirect(f'/find/' + recommendation['material_id'])
 
+# Validates user is same as recommendation user 
+# Sends user to tool edit page if successful
 @app.route('/edit/<recommendation_id>')
 def edit_recommendation(recommendation_id):
     data = { 'recommendation_id': recommendation_id}
@@ -23,6 +27,8 @@ def edit_recommendation(recommendation_id):
         return redirect('/dashboard')
     return render_template('edit_recommendation.html', recommendation=recommendation)
 
+# Validates recommendation form data and updates database
+# Returns user to tool page if successful
 @app.route('/update_recommendation', methods=['POST'])
 def update_recommendation():
     if request.form['velocity'] == '' or request.form['feed'] == '' or request.form['depth_of_cut'] == '':
@@ -35,6 +41,8 @@ def update_recommendation():
     Recommendation.update_recommendation(recommendation)
     return redirect('/find/' + str(recommendation['material_id']))
 
+# Validates user is same as recommendation user
+# Deletes recommendation from database and returns user to tool page if successful
 @app.route('/delete/<recommendation_id>')
 def delete_recommendation(recommendation_id):
     data = { 'id': recommendation_id, 'recommendation_id': recommendation_id}

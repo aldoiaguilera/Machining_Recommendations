@@ -6,6 +6,7 @@ from flask_app.models.manufacturer import Manufacturer
 from flask_app.models.insert import Insert
 from flask_app.models.material import Material
 
+# Prepopulate dashboard with available manufacturers
 @app.route('/dashboard')
 def dashboard():
     if 'user_id' not in session:
@@ -13,6 +14,7 @@ def dashboard():
     manufacturers = Manufacturer.get_all_manufacturers()
     return render_template('dashboard.html', manufacturers=manufacturers)
 
+# Parse, validate, and save manufacturer, insert, and material information (if not already in database)
 @app.route('/add_new_category', methods=['POST'])
 def add_new_category():
     # Parse form data

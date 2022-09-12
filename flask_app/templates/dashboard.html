@@ -19,6 +19,9 @@
     </div>
     <div class="body-container">
         <div class="find-container">
+            <div class="box-title-container">
+                <p class="box-title"><strong>Search</strong></p>
+            </div>
             <form>
                 <label for="manufacturer">Select Manufacturer:
                     <select name="manufacturer" onchange="get_all_inserts(this.value)" id="manufacturer">
@@ -39,7 +42,9 @@
             </form>
         </div>
         <div class="add-container">
-            <p>Not Finding What You're Looking For?</p>
+            <div class="box-title-container">
+                <p class="box-title"><strong>Not Finding What You're Looking For?</strong></p>
+            </div>
             {% with messages = get_flashed_messages(category_filter=["new_category_error"]) %}
                 {% if messages %}
                     {% for message in messages %}

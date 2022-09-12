@@ -9,6 +9,8 @@ class Manufacturer:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
 
+    # Input: nothing
+    # Output: List of manufacturers, not as object
     @classmethod
     def get_all_manufacturers(cls):
         query = """
@@ -21,6 +23,8 @@ class Manufacturer:
             manufacturers.append(manufacturer)
         return manufacturers
     
+    # Input: Manufacturer name
+    # Output: Class object with manufacturer information
     @classmethod
     def get_manufacturer_by_name(cls, data):
         query = """
@@ -33,6 +37,8 @@ class Manufacturer:
             return False
         return cls(result[0])
 
+    # Input: Manufacturer information
+    # Output: Manufacturer id
     @classmethod
     def save_manufacturer(cls, data):
         search = Manufacturer.get_manufacturer_by_name(data)
@@ -44,6 +50,8 @@ class Manufacturer:
         ;"""
         return connectToMySQL(cls.DB).query_db(query, data)
 
+    # Input: Manufacturer information 
+    # Output: Boolean of whether or not manufacturer information is valid
     @staticmethod
     def validate_manufacturer_data(data):
         is_valid = True

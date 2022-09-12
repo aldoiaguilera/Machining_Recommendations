@@ -15,6 +15,8 @@ class User:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
 
+    # Input: Nothing
+    # Output: List of class objects with user information
     @classmethod
     def get_all_users(cls):
         query = """
@@ -27,6 +29,8 @@ class User:
             users.append( cls(user) )
         return users
     
+    # Input: Email address
+    # Output: Class object with user information
     @classmethod
     def get_user_by_email(cls, data):
         query = """
@@ -39,6 +43,8 @@ class User:
             return False
         return cls(results[0])
 
+    # Input: Username
+    # Output: Class object with user information
     @classmethod
     def get_user_by_username(cls, data):
         query = """
@@ -51,6 +57,8 @@ class User:
             return False
         return cls(results[0])
 
+    # Input: User information
+    # Output: User id
     @classmethod
     def save_user(cls, data ):
         query = """
@@ -59,6 +67,8 @@ class User:
         ;"""
         return connectToMySQL(cls.DB).query_db( query, data )
 
+    # Input: User information
+    # Output: Boolean of whether or not user information is valid
     @staticmethod
     def validate_user_register(data):
         is_valid = True
@@ -82,6 +92,8 @@ class User:
             is_valid = False
         return is_valid
 
+    # Input: Unparsed registration data
+    # Output: Parsed registration data
     @staticmethod
     def parse_user_register(data):
         parsed_data = {
@@ -93,6 +105,8 @@ class User:
         }
         return parsed_data
 
+    # Input: Unparsed login data
+    # Output: Parsed login data
     @staticmethod
     def parse_user_login(data):
         parsed_data = {

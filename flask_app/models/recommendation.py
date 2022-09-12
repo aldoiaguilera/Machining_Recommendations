@@ -15,6 +15,8 @@ class Recommendation:
         self.user_id = data['user_id']
         self.other = None
     
+    # Input: Material id
+    # Output: List of Class objects with recommendation information
     @classmethod
     def get_recommendations_by_material_id(cls, data):
         query = """
@@ -33,6 +35,8 @@ class Recommendation:
             recommendations[i].other = data
         return recommendations
 
+    # Input: Recommendation id
+    # Output: Class object with recommendation information
     @classmethod
     def get_recommendation_by_recommendation_id(cls, data):
         query = """
@@ -60,6 +64,8 @@ class Recommendation:
         recommendation[0].other = data
         return recommendation[0]
 
+    # Input: Recommendation information
+    # Output: Recommendation id
     @classmethod
     def save_recommendation(cls, data ):
         query = """
@@ -68,6 +74,8 @@ class Recommendation:
         ;"""
         return connectToMySQL(cls.DB).query_db( query, data )
 
+    # Input: Recommendation information
+    # Output: Nothing
     @classmethod
     def update_recommendation(cls, data ):
         query = """
@@ -79,6 +87,8 @@ class Recommendation:
         ;"""
         return connectToMySQL(cls.DB).query_db( query, data )
     
+    # Input: Recommendation id
+    # Output: Nothing
     @classmethod
     def delete_recommendation(cls, data ):
         query = """
@@ -87,6 +97,8 @@ class Recommendation:
         ;"""
         return connectToMySQL(cls.DB).query_db( query, data )
 
+    # Input: Recommendation information
+    # Output: Boolean of whether or not recommendation information is valid
     @staticmethod
     def validate_recommendation(data):
         is_valid = True
@@ -101,6 +113,8 @@ class Recommendation:
             is_valid = False
         return is_valid
 
+    # Input: Unparsed recommendation data
+    # Output: Parsed recommendation data
     @staticmethod
     def parse_recommendation_data(data):
         parsed_data = {

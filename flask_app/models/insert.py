@@ -10,6 +10,8 @@ class Insert:
         self.updated_at = data['updated_at']
         self.manufacturer_id = data['manufacturer_id']
     
+    # Input: manufacturer_id
+    # Output: List of insert information, not as object
     @classmethod
     def get_inserts_by_manufacturer_json(cls, data):
         query = """
@@ -23,6 +25,8 @@ class Insert:
             insrts.append(insrt)
         return insrts
     
+    # Input: insert name
+    # Output: Class object with insert information
     @classmethod
     def get_insert_by_name(cls, data):
         query = """
@@ -35,6 +39,8 @@ class Insert:
             return False
         return cls(result[0])
 
+    # Input: Insert information
+    # Output: Insert id
     @classmethod
     def save_insert(cls, data):
         search = Insert.get_insert_by_name(data)
@@ -46,6 +52,8 @@ class Insert:
         ;"""
         return connectToMySQL(cls.DB).query_db(query, data)
 
+    # Input: Insert information 
+    # Output: Boolean of whether or not insert information is valid
     @staticmethod
     def validate_insert_data(data):
         is_valid = True

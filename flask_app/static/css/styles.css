@@ -78,6 +78,16 @@ form *, .find-form *, .tool-information * {
     color: white;
 }
 
+.edit-button, .delete-button {
+    margin-top: 10px;
+    border-radius: 10px;
+    width: 80px;
+    height: 40px;
+    padding: 10px;
+    background-color:green;
+    color: white;
+}
+
 .form-title {
     width: 100%;
     display: flex;
@@ -130,9 +140,11 @@ form *, .find-form *, .tool-information * {
 
 #recommendation-form {
     display: none;
+    font-size: 25px;
 }
 
 .recommendation {
+    font-size: 25px;
     margin: 20px;
     display: flex;
     flex-direction: column;
@@ -142,4 +154,34 @@ form *, .find-form *, .tool-information * {
     padding: 20px;
     background-color:orange;
     border-radius: 10px;
+}
+
+.box-title-container, .form-title {
+    border-bottom: 2px solid black;
+}
+
+.box-title {
+    width: 100%;
+}
+
+.nav-container * {
+    margin: 10px;
+}
+
+@media only screen and (max-width: 1199px) {
+    .body-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .body-container.main {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+    .nav-container {
+        display: flex;
+        justify-content: center;
+    }
+
 }

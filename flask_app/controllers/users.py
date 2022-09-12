@@ -6,10 +6,13 @@ bcrypt = Bcrypt(app)
 # Import classes
 from flask_app.models.user import User
 
+# Default login / Registration page
 @app.route('/')
 def index():
     return render_template('index.html')
 
+# Validates user registration data
+# Signs user in and sends them to dashboard if successful
 @app.route('/register', methods=['POST'])
 def register():
     if request.form['confirm_password'] != request.form['password']:
@@ -23,6 +26,8 @@ def register():
     session['username'] = data['username']
     return redirect('/dashboard')
 
+# Validates user login data with database
+# Signs user in and sends them to dashboard if successful
 @app.route('/login', methods=['POST'])
 def login():
     data = User.parse_user_login(request.form)
@@ -37,6 +42,7 @@ def login():
     session['username'] = user.username
     return redirect('/dashboard')
 
+# Logs user out and returns them to login/registration page
 @app.route('/logout')
 def logout():
     session.clear()

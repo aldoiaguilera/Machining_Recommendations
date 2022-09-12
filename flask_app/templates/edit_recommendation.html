@@ -36,13 +36,13 @@
                 <input type="hidden" name="id" value="{{recommendation.id}}">
                 <input type="hidden" name="material_id" value="{{recommendation.other.material_id}}">
                 <input type="hidden" name="user_id" value="{{session['user_id']}}">
-                <label for="velocity">Velocity (SFM):
+                <label for="velocity"><strong>Velocity (SFM):</strong>
                     <input type="number" name="velocity" min="0" max="2000" value="{{recommendation.velocity}}">
                 </label>
-                <label for="feed">Feed (IPR):
+                <label for="feed"><strong>Feed (IPR):</strong>
                     <input type="number" name="feed" min="0.001" max="0.030" step="0.001" value="{{recommendation.feed}}">
                 </label>
-                <label for="depth_of_cut">Depth of Cut (inch):
+                <label for="depth_of_cut"><strong>Depth of Cut (inch):</strong>
                     <input type="number" name="depth_of_cut" min="0.01" max="0.300" step="0.01" value="{{recommendation.depth_of_cut}}">
                 </label>
                 <div class="button-container">

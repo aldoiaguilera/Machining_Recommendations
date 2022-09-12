@@ -11,6 +11,8 @@ class Material:
         self.insrt_id = data['insrt_id']
         self.information = []
 
+    # Input: Insert id
+    # Output: List of material information, not as an object
     @classmethod
     def get_all_materials_by_insert_json(cls, data):
         query = """
@@ -24,6 +26,8 @@ class Material:
             materials.append(material)
         return materials
     
+    # Input: Material name
+    # Output: Class object with material information
     @classmethod
     def get_material_by_name(cls, data):
         query = """
@@ -36,6 +40,8 @@ class Material:
             return False
         return cls(result[0])
     
+    # Input: Material id
+    # Output: Class object with material, manufacturer, and insert information
     @classmethod
     def get_material_by_id(cls, data):
         query = """
@@ -53,6 +59,8 @@ class Material:
         material.information.append(result[0]['insrt'])
         return material
 
+    # Input: Material information
+    # Output: Material id
     @classmethod
     def save_material(cls, data):
         search = Material.get_material_by_name(data)
@@ -64,6 +72,8 @@ class Material:
         ;"""
         return connectToMySQL(cls.DB).query_db(query, data)
     
+    # Input: Material information 
+    # Output: Boolean of whether or not material information is valid
     @staticmethod
     def validate_material_data(data):
         is_valid = True
