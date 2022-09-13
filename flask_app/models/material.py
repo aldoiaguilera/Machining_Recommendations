@@ -34,6 +34,7 @@ class Material:
         SELECT * 
         FROM materials
         WHERE material = %(material)s
+        AND insrt_id = %(insrt_id)s
         ;"""
         result = connectToMySQL(cls.DB).query_db(query, data)
         if not result:
@@ -64,6 +65,10 @@ class Material:
     @classmethod
     def save_material(cls, data):
         search = Material.get_material_by_name(data)
+        print('****************')
+        print(search)
+        print('****************')
+
         if search:
             return search.id
         query = """

@@ -21,6 +21,8 @@ def add_recommendation():
 # Sends user to tool edit page if successful
 @app.route('/edit/<recommendation_id>')
 def edit_recommendation(recommendation_id):
+    if 'user_id' not in session:
+        return redirect('/')
     data = { 'recommendation_id': recommendation_id}
     recommendation = Recommendation.get_recommendation_by_recommendation_id(data)
     if session['user_id'] != recommendation.user_id:

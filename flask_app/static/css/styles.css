@@ -8,7 +8,7 @@ h1 {
 }
 
 body {
-    background-color:beige;
+    background-color:black;
 }
 
 .title-container {
@@ -17,7 +17,7 @@ body {
     justify-content: center;
     text-align: center;
     padding: 20px;
-    border-bottom: 2px solid red;
+    border-bottom: 4px solid orange;
     background-color: black;
     color: white;
 }
@@ -26,9 +26,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    background-color: beige;
+    padding-bottom: 200px;
 }
 
-.form-container, .tool-information, #recommendation-form {
+.form-container, .tool-information, #recommendation-form{
     margin: 20px;
     display: flex;
     flex-direction: column;
@@ -39,6 +41,15 @@ body {
     background-color:orange;
     border-radius: 10px;
 }
+
+.tool-information{
+    background-color:teal;
+}
+
+#recommendation-form {
+    background-color:orangered;
+}
+
 
 form, .find-form {
     display: flex;
@@ -57,6 +68,7 @@ form *, .find-form *, .tool-information * {
     height: 40px;
     padding: 10px;
     background-color: rgb(71, 67, 67);
+    border: 2px solid white;
     color: white;
 }
 
@@ -136,6 +148,8 @@ form *, .find-form *, .tool-information * {
     align-items: center;
     display: flex;
     flex-direction: column;
+    background-color: beige;
+    padding-bottom: 200px;
 }
 
 #recommendation-form {
@@ -168,6 +182,38 @@ form *, .find-form *, .tool-information * {
     margin: 10px;
 }
 
+.creator-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top: 4px solid orange;
+    padding: 20px;
+    background-color: black;
+    color: white;
+}
+
+.creator-container * {
+    margin: 2px;
+}
+
+#creator-avatar {
+    width: 80px;
+    height: 80px;
+    border: 1px solid white;
+    border-radius: 50%;
+}
+
+#creator-button {
+    border-radius: 10px;
+    width: 120px;
+    height: 50px;
+    padding: 10px;
+    background-color: rgb(71, 67, 67);
+    border: 2px solid white;
+    color: white;
+}
+
 @media only screen and (max-width: 1199px) {
     .body-container {
         display: flex;
@@ -183,5 +229,4 @@ form *, .find-form *, .tool-information * {
         display: flex;
         justify-content: center;
     }
-
 }
