@@ -5,6 +5,7 @@
 
 h1 {
     font-size: 40px;
+    text-shadow: 2px 2px black;
 }
 
 body {
@@ -20,7 +21,10 @@ body {
     border-bottom: 4px solid orange;
     background-color: black;
     color: white;
+    /* background-image: url("../images/inserts.png");
+    background-repeat: no-repeat; */
 }
+
 
 .body-container {
     display: flex;
@@ -30,7 +34,7 @@ body {
     padding-bottom: 200px;
 }
 
-.form-container, .tool-information, #recommendation-form{
+.form-container, .tool-information, #recommendation-form, #update-form {
     margin: 20px;
     display: flex;
     flex-direction: column;
@@ -40,6 +44,10 @@ body {
     padding: 20px;
     background-color:orange;
     border-radius: 10px;
+}
+
+#update-form * {
+    text-align: center;
 }
 
 .tool-information{
@@ -62,7 +70,7 @@ form *, .find-form *, .tool-information * {
     margin: 5px;
 }
 
-.logout-button, .home-button {
+.logout-button, .home-button, .account-button {
     border-radius: 10px;
     width: 100px;
     height: 40px;
@@ -138,6 +146,7 @@ form *, .find-form *, .tool-information * {
 .welcome {
     font-size: 30px;
     color: yellow;
+    text-shadow: 2px 2px black;
 }
 
 .tool-information {

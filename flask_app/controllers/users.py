@@ -47,3 +47,23 @@ def login():
 def logout():
     session.clear()
     return redirect('/')
+
+@app.route('/account')
+def account():
+    if 'user_id' not in session:
+        return redirect('/')
+    data = { 'id' : session['user_id'] }
+    user = User.get_user_by_user_id(data)
+    return render_template('account.html', user=user)
+
+@app.route('/update', methods=['POST'])
+def update():
+    if 'user_id' not in session:
+        return redirect('/')
+    new_data = User.parse_user_update_data(request.form)
+    old_data = User.get_user_by_user_id(new_data)
+    if not User.validate_user_update_data(new_data, old_data):
+        return redirect('/account')
+    User.update_user_data(new_data)
+    session['username'] = new_data['username']
+    return redirect('/account')
