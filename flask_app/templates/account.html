@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machining Recommendations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}">
+</head>
+<body>
+    <div class="title-container">
+        <h1>Machining Recommendations</h1>
+        <div class="nav-container">
+            <a href="/dashboard"><button class="home-button">Home</button></a>
+            <a href="/logout"><button class="logout-button">Logout</button></a>
+        </div>
+    </div>
+    <div class="body-container">
+        <form action="/update" method="post" id="update-form">
+            {% with messages = get_flashed_messages(category_filter=["update_error"]) %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p class="alert">**{{message}}**</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <label for="id">
+                <input type="hidden" name="id" value="{{ user.id }}">
+            </label>
+            <label for="username">Username:
+                <input type="text" name="username" value="{{ user.username }}">
+            </label>
+            <label for="first_name">First Name:
+                <input type="text" name="first_name" value="{{ user.first_name }}">
+            </label>
+            <label for="last_name">Last Name:
+                <input type="text" name="last_name" value="{{ user.last_name }}">
+            </label>
+            <label for="email">Email:
+                <input type="text" name="email" value="{{ user.email }}">
+            </label>
+            <div class="button-container">
+                <a href="/dashboard"><button type="button" id="cancel-button" style="margin:0;">Cancel</button></a>
+                <button type="submit" id="submit-button">Update</button>
+            </div>
+        </form>
+    </div>
+    <footer class="creator-container">
+    </footer>
+</body>
+</html>

@@ -56,6 +56,18 @@ class User:
         if not results:
             return False
         return cls(results[0])
+    
+    @classmethod
+    def get_user_by_user_id(cls, data):
+        query = """
+        SELECT *
+        FROM users
+        WHERE id = %(id)s
+        ;"""
+        results = connectToMySQL(cls.DB).query_db(query, data)
+        if not results:
+            return False
+        return cls(results[0])
 
     # Input: User information
     # Output: User id
@@ -64,6 +76,17 @@ class User:
         query = """
         INSERT INTO users (username, first_name, last_name, email, password)
         VALUES (%(username)s, %(first_name)s, %(last_name)s, %(email)s, %(password)s)
+        ;"""
+        return connectToMySQL(cls.DB).query_db( query, data )
+
+    @classmethod
+    def update_user_data(cls, data):
+        query = """
+        UPDATE users
+        SET username = %(username)s, 
+        last_name = %(last_name)s, 
+        email = %(email)s
+        WHERE id = %(id)s
         ;"""
         return connectToMySQL(cls.DB).query_db( query, data )
 
@@ -114,3 +137,37 @@ class User:
             'password': data['password']
         }
         return parsed_data
+
+    @staticmethod
+    def parse_user_update_data(data):
+        parsed_data = {
+            'id' : data['id'],
+            'username' : data['username'],
+            'first_name' : data['first_name'],
+            'last_name' : data['last_name'],
+            'email' : data['email']
+        }
+        return parsed_data
+
+    @staticmethod
+    def validate_user_update_data(new_data, old_data):
+        is_valid = True
+        if User.get_user_by_username(new_data) and old_data.username != new_data['username']:
+            flash('Username is already in use!', 'update_error')
+            is_valid = False
+        if len(new_data['username']) < 3:
+            flash('Username must be at least 3 characters long!', 'update_error')
+            is_valid = False
+        if not EMAIL_REGEX.match(new_data['email']): 
+            flash("Invalid email address!", 'update_error')
+            is_valid = False
+        if len(new_data['first_name']) < 3:
+            flash("First name must be at least 3 characters!", 'update_error')
+            is_valid = False
+        if len(new_data['last_name']) < 3:
+            flash("Last name must be at least 3 characters!", 'update_error')
+            is_valid = False
+        if User.get_user_by_email(new_data) and old_data.email != new_data['email']:
+            flash("Email address is already in use!", 'update_error')
+            is_valid = False
+        return is_valid
