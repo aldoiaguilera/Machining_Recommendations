@@ -1,4 +1,3 @@
-from asyncio.windows_events import NULL
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash
 
