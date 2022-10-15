@@ -1,6 +1,6 @@
 // Load inserts based on manufacturer
 async function get_all_inserts(manufacturer_id) {
-    var results = await fetch('http://localhost:5000/get_inserts/' + manufacturer_id)
+    var results = await fetch('http://18.118.161.190/get_inserts/' + manufacturer_id)
         .then( response => response.json() )
     position = document.getElementById("insrt");
     position.innerHTML = '';
@@ -17,7 +17,7 @@ get_all_inserts(document.getElementById("manufacturer").value)
 
 // Load materials based on insert
 async function get_all_materials(insrt_id){
-    var results = await fetch('http://localhost:5000/get_materials/' + insrt_id)
+    var results = await fetch('http://18.118.161.190/get_materials/' + insrt_id)
         .then( response => response.json() )
     position = document.getElementById("material");
     position.innerHTML = '';
@@ -31,5 +31,5 @@ async function get_all_materials(insrt_id){
 // Load page result
 function find() {
     material = document.getElementById("material").value;
-    window.location.href = "http://localhost:5000/find/" + material;
+    window.location.href = "http://18.118.161.190/find/" + material;
 }
