@@ -60,13 +60,14 @@
             {% endwith %}
             <form action="/login" method="post">
                 <label for="email" class="column">Email:
-                    <input type="email" name="email">
+                    <input type="email" name="email" id="email">
                 </label>
                 <label for="password">Password:
-                    <input type="password" name="password">
+                    <input type="password" name="password" id="password">
                 </label>
                 <div class="button-container">
                     <button type="submit" class="login-button">Login</button>
+                    <button type="button" class="login-button" onclick="demo()">Demo</button>
                 </div>
             </form>
         </div>
