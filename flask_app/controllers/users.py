@@ -52,6 +52,8 @@ def logout():
 def account():
     if 'user_id' not in session:
         return redirect('/')
+    if session['username'] == 'test':
+        return redirect('/dashboard')
     data = { 'id' : session['user_id'] }
     user = User.get_user_by_user_id(data)
     return render_template('account.html', user=user)

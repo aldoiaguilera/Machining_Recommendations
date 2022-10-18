@@ -12,4 +12,9 @@ async function getCreator() {
     console.log(creator)
 }
 
+function demo() {
+    document.getElementById('email').value = 'test@gmail.com';
+    document.getElementById('password').value = 'password';
+}
+
 getCreator()
